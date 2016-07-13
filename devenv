@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+declare -r base_url=https://nixos.org/releases/nixpkgs
+declare -r version=nixpkgs-16.09pre86545.65ac26e
+
+nix-shell -I nixpkgs="${base_url}/${version}/nixexprs.tar.xz"
+

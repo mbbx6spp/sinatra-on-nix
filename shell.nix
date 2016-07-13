@@ -21,6 +21,7 @@ stdenv.mkDerivation {
     ruby --version
     redis-cli --version
     bundle version
+    siege --version 2>&1 | head -1
 
     mkdir -p ${toString rootDir}/var/{data,log,run}
   '';
