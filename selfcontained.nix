@@ -1,3 +1,4 @@
+# To use this run: nix-shell selfcontained.nix
 # Only requires a newish (15.03+) nixpkgs in the external env to boostrap.
 { bootpkgs ? import <nixpkgs> {}
 # Defaultable channel url and sha256 args so that CI can inject. Avoid hardcoding!
@@ -12,10 +13,10 @@ let
 
   # Create specified nixpkgs channel and place in nix store
   pkgszip = bootpkgs.fetchzip { inherit url sha256; };
-  # Iimport the expression into pkgs binding
+  # Import the expression into pkgs binding
   pkgs = import pkgszip {};
 
-  # Nnow we can inherit attrs from pkgs (the pinned channel).
+  # Now we can inherit attrs from pkgs (the pinned channel).
   # There should be no more references to bootpkgs now.
   inherit (pkgs) stdenv;
 
