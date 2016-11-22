@@ -88,9 +88,11 @@ http://nixos.org/nixpkgs/manual/#sec-language-ruby
 
 So what else can we do? Oh, I am so glad you asked...
 
+* Define Docker images using the same deterministic build/dependency
+  management tooling Nix provides. See [README.md here](etc/containers).
+
 TODO:
 
-* Docker image example
 * AMI image example
 * Virtualbox image example
 
