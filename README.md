@@ -21,7 +21,7 @@ and `redis-server`:
 $ env RACK_ENV=bench0 bundle exec foreman start
 ```
 
-In another terminal you can run benchmark via `siege`:
+In another terminal you can run benchmark via `wrk`:
 
 ```bash
 $ ./bench
@@ -33,7 +33,7 @@ Note that all the following are installed:
 * Ruby v2.3.1p112
 * Redis v3.0.7
 * Bundler v1.12.5
-* Siege v4.0.1
+* wrk (mystery meat 2012 version because Go projects just are this way?)
 
 Plus all of their transitive dependencies. Every time you run
 `./devenv` with the pinned channel (peek inside the script `devenv`)
