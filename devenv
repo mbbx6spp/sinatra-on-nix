@@ -1,7 +1,20 @@
 #!/usr/bin/env bash
 
-declare -r base_url=https://nixos.org/releases/nixpkgs
-declare -r version=nixpkgs-16.09pre86545.65ac26e
+# You can uncomment these and remove the bootstrapping importing of
+# nixpkgs based on the version in version.nix inside shell.nix as
+# an alternative form of bootstrapping with a 'pinned' channel.
+# This ensures a commit (record of change) is required to change
+# versions of any part of the transitive dependency tree.
+# To ensure utmost reproducibility you would host the nixexprs.tar.xz
+# for all the channels used in internal projects on your own infrastructure.
+# This is akin to hosting your own APT/YUM/etc sources/repos for better
+# control. The difference is that you can promote a new version of a
+# package in an internal source/repo without requiring a commit as
+# documentation here that would change the environment using traditional
+# package management tools.
 
-nix-shell -I nixpkgs="${base_url}/${version}/nixexprs.tar.xz"
+#declare -r base_url=https://nixos.org/releases/nixpkgs
+#declare -r version=nixpkgs-16.09pre86545.65ac26e
+
+nix-shell #-I nixpkgs="${base_url}/${version}/nixexprs.tar.xz"
 
