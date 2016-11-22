@@ -43,14 +43,14 @@ This is the power of Nix.
 
 ## Package Definition
 
-See link:default.nix[Ruby Nix package definition] for an example of how
+See [Ruby Nix package definition (default.nix)](default.nix) for an example of how
 we would specify a Nix expression for the distributable dependencies for
 the application. We build the Puma Rubygems dependency with native Ruby/C
 setup.
 
 ## Shell/Development Environment Definition
 
-See link:shell.nix[Development environment definition] to see how we can
+See [Development environment definition (shell.nix)](shell.nix) to see how we can
 write a Nix expression to specify a fully bootstrappable (only requirement
 is Nix tooling available in currently environment, nothing else) development
 environment.
