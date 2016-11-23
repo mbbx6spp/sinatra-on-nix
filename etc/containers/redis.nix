@@ -3,7 +3,7 @@
 
 # As before we request fetchzip so we can bootstrap from the
 # pinned version of the nixpkgs channel we defined in the
-# project root's version.nix file (see further below).
+# project root's channel.nix file (see further below).
 { fetchzip ? (import <nixpkgs> {}).fetchzip
 # We can specify the name of the application that uses
 # this container. We default to 'sinatra-on-nix'.
@@ -22,8 +22,8 @@
 }:
 let
   # Bootstrap (same as in shell.nix just more inlined) to pinned
-  # channel specified in the project root's version.nix.
-  pkgs = import (fetchzip (import ../../version.nix)) {};
+  # channel specified in the project root's channel.nix.
+  pkgs = import (fetchzip (import ../../channel.nix)) {};
 
   # Bring into scope from the new pkgs namespace the named
   # values for convenience.
