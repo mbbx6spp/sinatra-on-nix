@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # You can uncomment these and remove the bootstrapping importing of
-# nixpkgs based on the version in version.nix inside shell.nix as
+# nixpkgs based on the version in channel.nix inside shell.nix as
 # an alternative form of bootstrapping with a 'pinned' channel.
 # This ensures a commit (record of change) is required to change
 # versions of any part of the transitive dependency tree.

@@ -1,16 +1,17 @@
-# To bootstrap to a specific version of nixpkgs (see version.nix)
+# To bootstrap to a specific version of nixpkgs (see channel.nix)
 # we need fetchzip lambda which has been part of nixpkgs for years.
 # This means we can bootstrap with many old, current, and likely
 # future versions of nixpkgs by only requiring fetchzip to bootstrap.
 { fetchzip ? (import <nixpkgs> {}).fetchzip
-, version ? import ./VERSION
+# version of this project
+, version ? "0.1.0"
 , ... }:
 let
-  # version.nix contains the URL and SHA256 for the version of the channel
+  # channel.nix contains the URL and SHA256 for the version of the channel
   # we want to pin our environment to.
   # This ensures fully reproducible and truly deterministic environments
   # all the way through all transitive dependencies of this project.
-  pkgsPath = fetchzip (import ./version.nix);
+  pkgsPath = fetchzip (import ./channel.nix);
   # We import the contents of the pinned nixpkgs into the pkgs binding
   # so we can use below.
   pkgs = import pkgsPath {};
@@ -22,9 +23,11 @@ let
   gemsEnv = callPackage ./default.nix {};
 
 in stdenv.mkDerivation {
+  inherit version;
 
   # name of project
-  name = "sinatra-on-nix";
+  name = "sinatra-on-nix-${version}";
+
 
   # Set env to the Ruby project's package definition in default.nix
   # This allows us to distribute our application for deployment and
