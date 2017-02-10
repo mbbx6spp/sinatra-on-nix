@@ -13,26 +13,19 @@ bundlerEnv {
     platforms = platforms.unix;
   };
 
-  gemConfig = {
-    # If you needed ffi, add libffi to the inputs of the lambda
+  gemConfig = lib.recursiveUpdate defaultGemConfig {
+    # Nixpkgs defines some default inputs for popular Ruby gems,
+    # including puma, nokogiri, ffi, and others.
+    # https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/ruby-modules/gem-config/default.nix
+    # These are provided as defaultGemConfig. In order to
+    # supplement our own overrides or additions without dropping
+    # defaults.
+
+    # If you needed curb, add libcurl to the inputs of the lambda
     # above and then uncomment the block below to build native
     # Ruby/C extensions.
-    #ffi = spec: {
-    #  buildInputs = [ libffi ];
-    #  buildFlags = [
-    #    "--with-cflags=-I${libffi}/include"
-    #    "--with-ldflags=-L${libffi}/lib"
-    #  ];
-    #};
-
-    # If you need nokogiri you would just need to include libxml2
-    # and libxslt in the lambda inputs and uncomment the below.
-    #nokogiri = spec: {
-    #  buildInputs = [ libxslt libxml2 ];
-    #  buildFlags = [
-    #    "--with-xml2-config=${libxml2}/bin/xml2-config"
-    #    "--with-xslt-config=${libxslt}/bin/xslt-config"
-    #  ];
+    #curb = spec: {
+    #  buildInputs = [ libcurl ];
     #};
 
     # In fact we could swap out openssl for libressl if we preferred
@@ -41,12 +34,12 @@ bundlerEnv {
     # interesting things than in most FHS Linux distributions with
     # far greater ability to reason about how the software is built,
     # produced, and delivered.
-    puma = spec: {
-      buildInputs = [ openssl ];
-      buildFlags = [
-        "--with-cflags=-I${openssl}/include"
-        "--with-ldflags=-L${openssl}/lib"
-      ];
-    };
+    # puma = spec: {
+    #  buildInputs = [ libressl ];
+    #  buildFlags = [
+    #    "--with-cflags=-I${libressl}/include"
+    #    "--with-ldflags=-L${libressl}/lib"
+    #  ];
+    #};
   };
 }
